@@ -310,15 +310,16 @@ class ineuron_Course():
 @cross_origin()
 def run_course_details():
 
-    return "Hello"
-    '''
+    #return "Hello"
+    
     ### Getting All the Course Urls
     driver_path=r"/opt/homebrew/bin/Chromedriver"
     try:
         ## Database client details
         dbclient= pymongo.MongoClient("mongodb+srv://mogodb:mongodb@cluster0.n86s3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     except Exception as e:
-        print("Connection failed. please check the connection link")
+        print("Custom Error: Mongodb Connection failed. please check the connection link")
+        print("Error details:",e)
         logging.error("Exception raised: "+ str(e))
     #dbclient = client.test
     dbname='course_details'
@@ -326,7 +327,7 @@ def run_course_details():
     ineuron_course_scrap=ineuron_Course(ineuron_url, dbclient, dbname, dbcollectionname)
     ineuron_course_scrap.getCourses(webdriver, driver_path,sleep_time=2)
     logging.shutdown()
-    return render_template('results.html')'''
+    return render_template('results.html')
 
 
 
