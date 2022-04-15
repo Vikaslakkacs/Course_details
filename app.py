@@ -12,6 +12,7 @@ import time
 import pymongo
 import logging
 import datetime
+import os
 ### Initiating functions
 app= Flask(__name__)
 ineuron_url="https://courses.ineuron.ai/"
@@ -111,11 +112,11 @@ class ineuron_Course():
                 ###Scrapping Course category url with web driver
                 chrome_browserless_option= wb.ChromeOptions()
                 ## Passing browser path, Note: This should be enabled when running in Cloud (eg: Heroku)
-                chrome_browserless_option.binary_location = GOOGLE_CHROME_BIN
+                chrome_browserless_option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
                 ## Headless will processdata without opening browser
                 chrome_browserless_option.add_argument('headless')
                 ##Getting Chromedriver extension
-                driver= wb.Chrome(executable_path=CHROMEDRIVER_PATH, options= chrome_browserless_option)
+                driver= wb.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options= chrome_browserless_option)
                 ##driver= wb.Chrome(executable_path=driver_path) ## For browser option
             except Exception as e:
                 print("Failed to open browser, Please check browser options")
@@ -326,7 +327,7 @@ def run_course_details():
         print("Custom Error: Mongodb Connection failed. please check the connection link")
         print("Error details:",e)
         logging.error("Exception raised: "+ str(e))
-    return "Hello"
+    #return "Hello"
     #dbclient = client.test
     dbname='course_details'
     dbcollectionname='course_details_doc'
