@@ -308,7 +308,7 @@ class ineuron_Course():
 ## Getting all the course details
 @app.route('/course_details', methods=['POST', 'GET'])
 @cross_origin()
-def run_course_details():
+def index():
     ### Getting All the Course Urls
     driver_path=r"/opt/homebrew/bin/Chromedriver"
     try:
