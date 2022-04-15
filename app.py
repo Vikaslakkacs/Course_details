@@ -308,7 +308,10 @@ class ineuron_Course():
 ## Getting all the course details
 @app.route('/course_details', methods=['POST', 'GET'])
 @cross_origin()
-def index():
+def run_course_details():
+    if request.method=='POST':
+        return "Hello"
+    '''
     ### Getting All the Course Urls
     driver_path=r"/opt/homebrew/bin/Chromedriver"
     try:
@@ -323,7 +326,7 @@ def index():
     ineuron_course_scrap=ineuron_Course(ineuron_url, dbclient, dbname, dbcollectionname)
     ineuron_course_scrap.getCourses(webdriver, driver_path,sleep_time=2)
     logging.shutdown()
-    return render_template('results.html')
+    return render_template('results.html')'''
 
 
 
