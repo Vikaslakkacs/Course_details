@@ -115,6 +115,9 @@ class ineuron_Course():
                 chrome_browserless_option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
                 ## Headless will processdata without opening browser
                 chrome_browserless_option.add_argument('headless')
+                ### To avoid chrome to consider root folder.
+                chrome_browserless_option.add_argument("--no-sandbox")
+                chrome_browserless_option.add_argument("--disable-dev-shm-usage")
                 ##Getting Chromedriver extension
                 driver= wb.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options= chrome_browserless_option)
                 ##driver= wb.Chrome(executable_path=driver_path) ## For browser option
