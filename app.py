@@ -309,8 +309,8 @@ class ineuron_Course():
 @app.route('/course_details', methods=['POST', 'GET'])
 @cross_origin()
 def run_course_details():
-    if request.method=='POST':
-        return "Hello"
+
+    return "Hello"
     '''
     ### Getting All the Course Urls
     driver_path=r"/opt/homebrew/bin/Chromedriver"
