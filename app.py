@@ -13,7 +13,7 @@ import pymongo
 import logging
 import datetime
 ### Initiating functions
-#app= Flask(__name__)
+app= Flask(__name__)
 ineuron_url="https://courses.ineuron.ai/"
 ## Initiating logging with parameters
 log_file= 'divisible_by_zero_'+str(datetime.datetime.now())+'.log'
@@ -21,9 +21,9 @@ logging.basicConfig(filename=log_file,
                    level= logging.DEBUG,
                    format=("%(asctime)s %(levelname)s %(message)s"))
 logging.info("Start of logging")
-## Getting all the course details
-#@app.route('/course_details', methods=['POST', 'GET'])
 '''Consists of all the methods to retrieve course details'''
+## Getting all the course details
+@app.route('/course_details', methods=['POST', 'GET'])
 class ineuron_Course():
     def __init__(self,ineuron_url,dbclient, dbname,dbcollectionname):
         self.ineuron_url= ineuron_url
