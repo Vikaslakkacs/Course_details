@@ -101,7 +101,7 @@ class ineuron_Course():
 
 
     '''getting all the details of course for each course category'''
-    def getCourses(self, wb: webdriver, driver_path, sleep_time=1):
+    def getCourses(self, wb: webdriver, browser_path, driver_path, sleep_time=1):
         '''Creating Db connection with mongodb and inserting data into document'''
         course_cat_document= self.dbConnection()
         
@@ -110,6 +110,8 @@ class ineuron_Course():
             try:
                 ###Scrapping Course category url with web driver
                 chrome_browserless_option= wb.ChromeOptions()
+                ## Passing browser path, Note: This should be enabled when running in Cloud (eg: Heroku)
+                chrome_browserless_option.binary_location = browser_path
                 ## Headless will processdata without opening browser
                 chrome_browserless_option.add_argument('headless')
                 ##Getting Chromedriver extension
@@ -313,7 +315,10 @@ def run_course_details():
     #return "Hello"
     
     ### Getting All the Course Urls
-    driver_path=r"/opt/homebrew/bin/Chromedriver"
+    #driver_path="/opt/homebrew/bin/Chromedriver"
+    ### Settings for Heroku
+    browser_path = '/app/.apt/usr/bin/google_chrome'
+    driver_path = '/app/.chromedriver/bin/chromedriver'
     try:
         ## Database client details
         dbclient= pymongo.MongoClient("mongodb+srv://mogodb:mongodb@cluster0.n86s3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -325,7 +330,7 @@ def run_course_details():
     dbname='course_details'
     dbcollectionname='course_details_doc'
     ineuron_course_scrap=ineuron_Course(ineuron_url, dbclient, dbname, dbcollectionname)
-    ineuron_course_scrap.getCourses(webdriver, driver_path,sleep_time=2)
+    ineuron_course_scrap.getCourses(webdriver, browser_path, driver_path,sleep_time=2)
     logging.shutdown()
     return render_template('results.html')
 
