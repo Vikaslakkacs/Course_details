@@ -174,7 +174,7 @@ class ineuron_Course():
                 #print(course_details_row['_id'])
             ### Breaking for one row because of Time out issues with Heroku
             course_cat_count+=1
-            if course_cat_count==3:
+            if course_cat_count==2:
                 break    
         #self.csv_file.close()
 
