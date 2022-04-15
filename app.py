@@ -17,7 +17,7 @@ import os
 app= Flask(__name__)
 ineuron_url="https://courses.ineuron.ai/"
 ## Initiating logging with parameters
-log_file= 'divisible_by_zero_'+str(datetime.datetime.now())+'.log'
+log_file= 'course_details'+str(datetime.datetime.now())+'.log'
 logging.basicConfig(filename=log_file, 
                    level= logging.DEBUG,
                    format=("%(asctime)s %(levelname)s %(message)s"))
