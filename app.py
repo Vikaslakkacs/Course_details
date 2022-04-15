@@ -21,9 +21,14 @@ logging.basicConfig(filename=log_file,
                    level= logging.DEBUG,
                    format=("%(asctime)s %(levelname)s %(message)s"))
 logging.info("Start of logging")
+
+@app.route('/',methods=['GET'])  # route to display the home page
+@cross_origin()
+def homePage():
+    return render_template("index.html")
+
+
 '''Consists of all the methods to retrieve course details'''
-## Getting all the course details
-@app.route('/course_details', methods=['POST', 'GET'])
 class ineuron_Course():
     def __init__(self,ineuron_url,dbclient, dbname,dbcollectionname):
         self.ineuron_url= ineuron_url
@@ -299,14 +304,11 @@ class ineuron_Course():
             logging.error("Exception raised: "+ str(e))
         return course_cat
 
-
-
-
-
-
-
-if __name__=="__main__":
-    
+### Creating a function which runs all the data
+## Getting all the course details
+@app.route('/course_details', methods=['POST', 'GET'])
+@cross_origin()
+def run_course_details():
     ### Getting All the Course Urls
     driver_path=r"/opt/homebrew/bin/Chromedriver"
     try:
@@ -322,3 +324,10 @@ if __name__=="__main__":
     ineuron_course_scrap.getCourses(webdriver, driver_path,sleep_time=2)
     print("Sucessfully Written into Database")
     logging.shutdown()
+
+
+
+
+
+if __name__=="__main__":
+    app.run()
