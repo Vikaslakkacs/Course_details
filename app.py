@@ -323,7 +323,7 @@ def run_course_details():
     ineuron_course_scrap=ineuron_Course(ineuron_url, dbclient, dbname, dbcollectionname)
     ineuron_course_scrap.getCourses(webdriver, driver_path,sleep_time=2)
     logging.shutdown()
-    return "Sucessfully Written into Database"
+    return render_template('results.html')
 
 
 
