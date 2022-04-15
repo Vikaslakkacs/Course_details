@@ -332,7 +332,7 @@ def run_course_details():
     ineuron_course_scrap=ineuron_Course(ineuron_url, dbclient, dbname, dbcollectionname)
     ineuron_course_scrap.getCourses(webdriver, CHROMEDRIVER_PATH, GOOGLE_CHROME_BIN,sleep_time=2)
     logging.shutdown()
-    return render_template('results.html')
+    return "Hello"
 
 
 
