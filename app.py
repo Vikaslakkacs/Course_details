@@ -105,7 +105,8 @@ class ineuron_Course():
     def getCourses(self, wb: webdriver, CHROMEDRIVER_PATH, GOOGLE_CHROME_BIN, sleep_time=1):
         '''Creating Db connection with mongodb and inserting data into document'''
         course_cat_document= self.dbConnection()
-        
+        ### Due to Heroku timeout issue we are limiting to 3 categories
+        course_cat_count=0
         ###Looping around category urls and getting all the course details
         for course_category_url in self.getCourseCategory():
             try:
@@ -171,8 +172,10 @@ class ineuron_Course():
                     print("Error details",e)
                     logging.error("Exception raised: "+ str(e))
                 #print(course_details_row['_id'])
-
-            ##break    
+            ### Breaking for one row because of Time out issues with Heroku
+            course_cat_count+=1
+            if course_cat_count==3:
+                break    
         #self.csv_file.close()
 
             
