@@ -166,7 +166,7 @@ class ineuron_Course():
                     logging.error("Exception raised: "+ str(e))
                 #print(course_details_row['_id'])
 
-            #break    
+            break    
         #self.csv_file.close()
 
             
