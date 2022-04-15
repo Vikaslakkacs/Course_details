@@ -326,6 +326,7 @@ def run_course_details():
         print("Custom Error: Mongodb Connection failed. please check the connection link")
         print("Error details:",e)
         logging.error("Exception raised: "+ str(e))
+    return "Hello"
     #dbclient = client.test
     dbname='course_details'
     dbcollectionname='course_details_doc'
